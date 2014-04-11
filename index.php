@@ -1,3 +1,8 @@
+<?PHP
+$file = "private/passwd";
+if (!file_exists($file))
+{
+?>
 <html>
 	<body>
 Veuillez entrer vos infos de connextion a PhpMyAdmin afin de pouvoir installer la base de donnees sur votre machine : <br />
@@ -12,3 +17,13 @@ Veuillez entrer vos infos de connextion a PhpMyAdmin afin de pouvoir installer l
 	</form>
 	</body>
 </html>
+<?PHP
+}else{?>
+<html>
+	<body>
+	Hello.
+	</body>
+</html>
+<?PHP
+}
+?>
