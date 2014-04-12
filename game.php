@@ -1,5 +1,6 @@
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="js/game.js"></script>
 	<link href="css/grid.css" rel="stylesheet" type="text/css"/>
@@ -17,14 +18,14 @@ if (!isset($_SESSION['id_game'])) //connect to game or create game
 	{
 		if ($_POST['status'] == "connect" && isset($_POST['id_game']))
 		{
-			echo "connect to game id : ".$_POST['id_game'];
+			echo "You are connected to game number : ".$_POST['id_game'];
 			connectToGame($_POST['id_game']);
 		}
 		else if ($_POST['status'] == "create" && isset($_POST['game_name']))
 		{
 			if ($_POST['game_name'] !== "")
 			{
-				echo "create new game : ".$_POST['game_name'];
+				echo "Create new game : ".$_POST['game_name'];
 				createGame($_POST['game_name']);
 			}
 			else
@@ -41,10 +42,9 @@ else //connected to game
 		$_SESSION['game_started'] = true;
 		$gi->setFaction($_POST['faction']);
 	}
-	if (isset($_SESSION['game_started']) && $_SESSION['game_started'] === true)
-	{
-		include("grid.php");
-	}
+
+	if (isset($_SESSION['game_started']))
+		include('grid.php');
 }
 
 function connectToGame($id)
@@ -60,25 +60,29 @@ function createGame($name)
 	$_SESSION["id_game"] = $new->getId();
 	$game = new Connect();
 }
-
 ?>
 </div>
 <script>
 var i = 0;
 setInterval(function (){
 i++;
-console.log("test");
-<?PHP
-$status = $gi->status();
-if ($status == "waiting")
-{
-?>
-	$('#game_status').text("waiting for player to connect since " + i + " sec");
-<?PHP
-}
-?>
-},1000);
+$.ajax({
+	url : 'status.php',
+	method: 'POST',
+	data : { update : 'update' },
+	success : function(res) {
+		res = res.trim();
+		if (res == "waiting")
+			$('#game_status').text("Waiting for player to connect since " + i + " seconds");
+		else if (res == "<?PHP echo $_SESSION['login'];?>")
+			$('#game_status').text("It\'s your turn !");
+		else
+			$('#game_status').text("It\'s "+res+" turn, wait a min :)");
+	}
+	});
+}, 1000);
 
 </script>
+
 </body>
 </html>

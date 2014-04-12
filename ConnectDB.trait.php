@@ -1,7 +1,7 @@
 <?PHP
 trait ConnectDB
 {
-		private function connect()
+	private function connect()
 	{
 		$host = 'localhost';
 		$user = 'root';

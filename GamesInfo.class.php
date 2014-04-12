@@ -70,7 +70,7 @@ class GamesInfo
 			$nbmax = $nbmax->fetch_assoc()['max_players'];
 
 		if ($nb == $nbmax)
-			$mysqli->query("UPDATE `game` SET `status` = `".$_SESSION['login']." ` WHERE `id` = '".intval($this->_idGame));
+			$mysqli->query("UPDATE `game` SET `status` = '".$_SESSION['login']."' WHERE `id` = ".intval($this->_idGame));
 		$mysqli->close();
 	}
 }

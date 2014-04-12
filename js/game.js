@@ -6,10 +6,9 @@ $(document).ready(function(){
 				url : 'game.php',
 				method : 'POST',
 				data : { faction : $(this).attr('id')},
-				success : function (res) {
+				success : function () {
 					$('#faction').hide();
 					$('#content').load('grid.php');
-					console.log(res);
 				}
 			});
 	});
