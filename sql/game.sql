@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:3306
--- Généré le :  Sam 12 Avril 2014 à 14:27
+-- Généré le :  Sam 12 Avril 2014 à 14:30
 -- Version du serveur :  5.5.36
 -- Version de PHP :  5.4.26
 
@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `game` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `max_players` int(11) NOT NULL DEFAULT '2',
+  `status` varchar(255) NOT NULL DEFAULT 'waiting',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
