@@ -2,10 +2,10 @@
 -- version 4.1.9
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost:3306
--- Généré le :  Sam 12 Avril 2014 à 11:18
--- Version du serveur :  5.5.36
--- Version de PHP :  5.4.26
+-- Host: localhost:3306
+-- Generation Time: Apr 12, 2014 at 12:47 PM
+-- Server version: 5.5.36
+-- PHP Version: 5.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `game`
+-- Database: `game`
 --
 CREATE DATABASE IF NOT EXISTS `game` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `game`;
@@ -25,7 +25,7 @@ USE `game`;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `faction`
+-- Table structure for table `faction`
 --
 
 CREATE TABLE IF NOT EXISTS `faction` (
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `faction` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `faction`
+-- Dumping data for table `faction`
 --
 
 INSERT INTO `faction` (`id`, `name`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `faction` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `game`
+-- Table structure for table `game`
 --
 
 CREATE TABLE IF NOT EXISTS `game` (
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `game` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Contenu de la table `game`
+-- Dumping data for table `game`
 --
 
 INSERT INTO `game` (`id`, `name`, `max_players`) VALUES
@@ -71,7 +71,7 @@ INSERT INTO `game` (`id`, `name`, `max_players`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `games_faction`
+-- Table structure for table `games_faction`
 --
 
 CREATE TABLE IF NOT EXISTS `games_faction` (
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `games_faction` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
--- Contenu de la table `games_faction`
+-- Dumping data for table `games_faction`
 --
 
 INSERT INTO `games_faction` (`id`, `id_game`, `id_faction`, `selected`) VALUES
@@ -104,7 +104,28 @@ INSERT INTO `games_faction` (`id`, `id_game`, `id_faction`, `selected`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `games_players`
+--
+
+CREATE TABLE IF NOT EXISTS `games_players` (
+  `id_game` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `games_players`
+--
+
+INSERT INTO `games_players` (`id_game`, `id_user`) VALUES
+(1, 2),
+(1, 1),
+(10, 3),
+(10, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -112,7 +133,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `login` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `login`, `password`) VALUES
+(1, 'nope', 'perdu'),
+(2, 'fail', 'ilost'),
+(3, 'moi', 'toto'),
+(4, 'toto', 'moi');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
