@@ -21,7 +21,7 @@ Veuillez entrer vos infos de connextion a PhpMyAdmin afin de pouvoir installer l
 <?PHP
 }else{
 	$serv =new ServersInfo();
-	$array = $serv->getserverinfo();
+	$array = $serv->getServersInfo();
 	var_dump($array);
 	echo "\n";
 ?>
