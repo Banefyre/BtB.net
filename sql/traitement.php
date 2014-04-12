@@ -24,5 +24,5 @@ if(isset($_POST['etape']) && $_POST['etape'] == 1)
 	header('Location: ../index.php');
 }
 else
-		exit('Vous devez d\'abord être passé par <a href="../install.php">le formulaire de connextion</a>.');
+		exit('Vous devez d\'abord être passé par <a href="../install.php">le formulaire de connexion</a>.');
 ?>
