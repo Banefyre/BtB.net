@@ -15,14 +15,14 @@ if(isset($_POST['etape']) && $_POST['etape'] == 1)
 	$host = "localhost";
 	$login = trim($_POST['login']);
 	$pwd = trim($_POST['pwd']);
-	$base = "base";
+	$base = "game";
 	$dbh = mysqli_init();
 	$link = mysqli_real_connect($dbh,$host,$login,$pwd);
-	$sql = file_get_contents('base.sql');
+	$sql = file_get_contents('game.sql');
 	mysqli_multi_query($dbh,$sql);
 	write_login($pwd);
 	header('Location: ../index.php');
 }
 else
-		exit('Vous devez d\'abord être passé par <a href="../install.php">le formulaire</a>.');
+		exit('Vous devez d\'abord être passé par <a href="../install.php">le formulaire de connextion</a>.');
 ?>

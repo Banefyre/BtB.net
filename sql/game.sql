@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Apr 11, 2014 at 01:14 PM
+-- Generation Time: Apr 12, 2014 at 03:54 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.26
 
@@ -17,26 +17,36 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `base`
+-- Database: `game`
 --
-CREATE DATABASE IF NOT EXISTS `base` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `base`;
+CREATE DATABASE IF NOT EXISTS `game` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `game`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `game`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `login` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mdp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rank` int(11) NOT NULL,
-  `win` int(11) NOT NULL DEFAULT '0',
-  `lose` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE IF NOT EXISTS `game` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL,
+  `max_players` int(11) NOT NULL DEFAULT '2',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `login` varchar(255) NOT NULL,
+  `mdp` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
