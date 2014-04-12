@@ -48,29 +48,29 @@ class GamesInfo
 	public function connectPlayer()
 	{
 		$mysqli = $this->connect();
-		if (($id = $mysqli->query("SELECT `id` FROM `users` WHERE `name` = '".$_SESSOIN['login']."'")) === false)
+		if (($id = $mysqli->query("SELECT `id` FROM `users` WHERE `login` = '".$_SESSION['login']."'")) === false)
 			echo $mysqli->error;
 		else
-			$id = $res->fetch_assoc()['id'];
+			$id = $id->fetch_assoc()['id'];
 
-		if (($res2 = $mysqli->query("INSERT INTO `games_player` (id_game, id_user)  VALUE (".intval($this->_idGame).", ".intval($id).")")) === false)
+		if (($res2 = $mysqli->query("INSERT INTO `games_players` (id_game, id_user)  VALUE (".intval($this->_idGame).", ".intval($id).")")) === false)
 			echo $mysqli->error;
 
-		if (($nb = $mysqli->query("SELECT * FROM `games_player` WHERE `id_game` = ".intval($this->_idGame))) === false)
+		if (($nb = $mysqli->query("SELECT * FROM `games_players` WHERE `id_game` = ".intval($this->_idGame))) === false)
 			echo $mysqli->error;
 		else
 		{
-			$nb = $res->fetch_all();
-			$nb = count($res);
+			$nb = $nb->fetch_all();
+			$nb = count($nb);
 		}
 
-		if (($nbmax = $mysqli->query("SELECT `max_player` FROM `game` WHERE `id` = ".intval($this->_idGame))) === false)
+		if (($nbmax = $mysqli->query("SELECT `max_players` FROM `game` WHERE `id` = ".intval($this->_idGame))) === false)
 			echo $mysqli->error;
 		else
-			$nbmax = $res->fetch_assoc()['max_player'];
+			$nbmax = $nbmax->fetch_assoc()['max_players'];
 
-		if ($nb == $nb_max)
-			$mysqli->query("UPDATE `game` SET `status` = `".$_SESSION['login']." ` WHERE `id` = '".intval($this->_idGame]));
+		if ($nb == $nbmax)
+			$mysqli->query("UPDATE `game` SET `status` = `".$_SESSION['login']." ` WHERE `id` = '".intval($this->_idGame));
 		$mysqli->close();
 	}
 }
