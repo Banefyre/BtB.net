@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Apr 12, 2014 at 03:54 AM
+-- Generation Time: Apr 12, 2014 at 07:32 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.26
 
@@ -29,11 +29,19 @@ USE `game`;
 --
 
 CREATE TABLE IF NOT EXISTS `game` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `max_players` int(11) NOT NULL DEFAULT '2',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `game`
+--
+
+INSERT INTO `game` (`id`, `name`, `max_players`) VALUES
+(1, 'game1', 2),
+(2, 'game2', 2);
 
 -- --------------------------------------------------------
 
