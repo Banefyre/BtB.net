@@ -1,9 +1,13 @@
 <?PHP
 trait ConnectDB
 {
-	private function connect()
+		private function connect()
 	{
-		$mysqli = new mysqli('localhost', 'root', 'password', 'game');
+		$host = 'localhost';
+		$user = 'root';
+		$db = 'game';
+		$pass = file_get_contents("private/passwd");
+		$mysqli = new mysqli($host, $user, $pass, $db);
 		return $mysqli;
 	}
 }

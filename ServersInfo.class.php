@@ -11,13 +11,25 @@ class ServersInfo
 		$this->getdatafromdb();
 	}
 
+	private function getPlayersByGame($mysqli,$id)
+	{
+		$array = array();
+		$data = $mysqli->query("SELECT `id_user` FROM `games_players` WHERE `id_game` = ".$id);
+		while ($id_player = $data->fetch_assoc())
+		{
+			$array[] = $id_player["id_user"];
+		}
+		return($array);
+	}
+
 	private function getdatafromdb()
 	{
 		$mysqli = $this->connect();
 		$req = $mysqli->query("SELECT * FROM `game` ORDER BY `id` ASC");
 		while (($res = $req->fetch_assoc()))
 		{
-			$res['player_connected'] = 1;
+			$players = $this->getPlayersByGame($mysqli,$res['id']);
+			$res['player_connected'] = count($players);
 			$this->_servers[] = $res;
 		}
 		$mysqli->close();
