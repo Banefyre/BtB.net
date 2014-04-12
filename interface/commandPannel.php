@@ -21,7 +21,7 @@
 	<input class="button" id="end_turn" type="button" value="End turn !"/>
 </br>
 <div id="game_status">
-		status
+		Getting status...
 </div>
 </div>
 
