@@ -1,31 +1,66 @@
 <?PHP
-include_once('ServersInfo.class.php');
-$file = "private/passwd";
-if (!file_exists($file))
+session_start();
+require_once("Auth.class.php");
+$error = false;
+if (!empty($_POST['login']))
 {
-?>
-<html>
-	<body>
-Veuillez entrer vos infos de connextion a PhpMyAdmin afin de pouvoir installer la base de donnees sur votre machine : <br/>
-	<form action="sql/traitement.php" method="post">
-	<input type="hidden" name ="etape" value="1" />
-	<label for="login">Utilisateur :</label>
-	<input type="text" name="login" maxlength="40" /><br />
-	<label for="mdp">Mot de passe :</label>
-	<input type="password" name="pwd" maxlength="40" /><br />
-	<label for="submit">&nbsp;</label>
-	<input type="submit" name="submit" value="Envoyer" />
-	</form>
-	</body>
-</html>
-<?PHP
-}else{
-?>
-<html>
-	<body>
-	Hello.
-	</body>
-</html>
-<?PHP
+	$auth = new Auth();
+	if (!empty($_POST['password2']))
+	{
+		if ($_POST['password'] === $_POST['password2'])
+		{
+			if ($auth->register($_POST['login'], $_POST['password']))
+			{
+				$_SESSION['login'] = $_POST['login'];
+				$auth->redirect();
+			}
+		}
+		$error = true;
+	}
+	else
+	{
+		if ($auth->login($_POST['login'], $_POST['password']))
+		{
+			$_SESSION['login'] = $_POST['login'];
+			$auth->redirect();
+		}
+		$error = true;
+	}
 }
 ?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rush01</title>
+		<link rel="stylesheet" type="text/css" href="css/general.css" />
+	</head>
+	<body>
+		<div id="bar">
+			<a href="#login">login</a>
+		</div>
+		<div id="box">
+			<div class="minibox">
+				<label>Connexion</label>
+				<form method="post">
+					<input type="text" name="login" placeholder="login de connexion" />
+					<br />
+					<input type="password" name="password" placeholder="mot de passe" />
+					<br />
+					<input type="submit" value="Envoyer"<?PHP echo $error ? ' class="login_error"' : ''; ?>/>
+				</form>
+			</div>
+			<div class="minibox">
+				<label>Inscription</label>
+				<form method="post">
+					<input type="text" name="login" placeholder="login de connexion" />
+					<br />
+					<input type="password" name="password" placeholder="mot de passe" />
+					<br />
+					<input type="password" name="password2" placeholder="verifier mot de passe" />
+					<br />
+					<input type="submit" value="Envoyer"<?PHP echo $error ? ' class="login_error"' : ''; ?>/>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

@@ -12,6 +12,7 @@ final Class Connect
 	function __construct()
 	{
 		$this->_gi = new GamesInfo($_SESSION['id_game']);
+		$this->_gi->connectPlayer();
 		$this->chooseFaction();
 	}
 
@@ -23,7 +24,7 @@ final Class Connect
 		foreach ($factions as $faction)
 		{
 			if ($faction['selected'])
-				echo "<input class='selected faction' id='".$faction['id']."' type='submit' value='".$faction['name']."' />";
+				echo "<input class='selected' style='color : red' id='".$faction['id']."' type='submit' value='".$faction['name']."' />";
 			else
 				echo "<input class='faction' id='".$faction['id']."' type='submit' value='".$faction['name']."' />";
 		}

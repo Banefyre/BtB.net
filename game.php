@@ -2,6 +2,7 @@
 <head>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="js/game.js"></script>
+	<link href="css/grid.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id=content>
@@ -33,10 +34,16 @@ if (!isset($_SESSION['id_game'])) //connect to game or create game
 }
 else //connected to game
 {
+
+	$gi = new Gamesinfo($_SESSION['id_game']);
 	if (!empty($_POST['faction']))
 	{
-		$gi = new Gamesinfo($_SESSION['id_game']);
+		$_SESSION['game_started'] = true;
 		$gi->setFaction($_POST['faction']);
+	}
+	if (isset($_SESSION['game_started']) && $_SESSION['game_started'] === true)
+	{
+		include("grid.php");
 	}
 }
 
@@ -56,5 +63,22 @@ function createGame($name)
 
 ?>
 </div>
+<script>
+var i = 0;
+setInterval(function (){
+i++;
+console.log("test");
+<?PHP
+$status = $gi->status();
+if ($status == "waiting")
+{
+?>
+	$('#game_status').text("waiting for player to connect since " + i + " sec");
+<?PHP
+}
+?>
+},1000);
+
+</script>
 </body>
 </html>

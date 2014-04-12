@@ -1,0 +1,28 @@
+#grid
+{
+	width : 2000px;
+	height : 1000px;
+	display : flex;
+}
+
+#grid table td
+{
+	width : 10px;
+	height : 10px;
+	padding : 0;
+	margin : 0;
+}
+
+#grid table
+{
+	border-collapse : collapse;
+}
+
+#command_panel
+{
+	padding:5px;
+	width : 300px;
+	height : 250px;
+	margin-left: 10px;
+	border: solid black 2px;
+}

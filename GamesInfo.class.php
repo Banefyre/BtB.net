@@ -33,6 +33,46 @@ class GamesInfo
 			echo $mysqli->error;
 		$mysqli->close();
 	}
+
+	public function status()
+	{
+		$mysqli = $this->connect();
+		if (($res = $mysqli->query("SELECT `status` FROM `game` WHERE id = ".intval($this->_idGame))) === false)
+			echo $mysqli->error;
+		else
+			$ret = $res->fetch_assoc();
+		$mysqli->close();
+		return($ret['status']);
+	}
+
+	public function connectPlayer()
+	{
+		$mysqli = $this->connect();
+		if (($id = $mysqli->query("SELECT `id` FROM `users` WHERE `name` = '".$_SESSOIN['login']."'")) === false)
+			echo $mysqli->error;
+		else
+			$id = $res->fetch_assoc()['id'];
+
+		if (($res2 = $mysqli->query("INSERT INTO `games_player` (id_game, id_user)  VALUE (".intval($this->_idGame).", ".intval($id).")")) === false)
+			echo $mysqli->error;
+
+		if (($nb = $mysqli->query("SELECT * FROM `games_player` WHERE `id_game` = ".intval($this->_idGame))) === false)
+			echo $mysqli->error;
+		else
+		{
+			$nb = $res->fetch_all();
+			$nb = count($res);
+		}
+
+		if (($nbmax = $mysqli->query("SELECT `max_player` FROM `game` WHERE `id` = ".intval($this->_idGame))) === false)
+			echo $mysqli->error;
+		else
+			$nbmax = $res->fetch_assoc()['max_player'];
+
+		if ($nb == $nb_max)
+			$mysqli->query("UPDATE `game` SET `status` = `".$_SESSION['login']." ` WHERE `id` = '".intval($this->_idGame]));
+		$mysqli->close();
+	}
 }
 
 

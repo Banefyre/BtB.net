@@ -19,4 +19,9 @@
 	<input class="button" id="left" type="button" value="Left !"/><br />
 </div>
 	<input class="button" id="end_turn" type="button" value="End turn !"/>
+</br>
+<div id="game_status">
+		status
 </div>
+</div>
+

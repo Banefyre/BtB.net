@@ -8,9 +8,11 @@ $(document).ready(function(){
 				data : { faction : $(this).attr('id')},
 				success : function (res) {
 					$('#faction').hide();
+					$('#content').load('grid.php');
 					console.log(res);
 				}
 			});
 	});
+
 
 });
