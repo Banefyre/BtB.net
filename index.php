@@ -1,4 +1,5 @@
 <?PHP
+include_once('GamesInfo.class.php');
 $file = "private/passwd";
 if (!file_exists($file))
 {
@@ -18,7 +19,12 @@ Veuillez entrer vos infos de connextion a PhpMyAdmin afin de pouvoir installer l
 	</body>
 </html>
 <?PHP
-}else{?>
+}else{
+	$serv =new ServersInfo();
+	$array = $serv->getserverinfo();
+	var_dump($array);
+	echo "\n";
+?>
 <html>
 	<body>
 	Hello.
