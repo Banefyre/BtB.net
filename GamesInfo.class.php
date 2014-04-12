@@ -1,5 +1,4 @@
 <?PHP
-
 include_once('ConnectDB.class.php');
 
 class GamesInfo extends ConnectDB {

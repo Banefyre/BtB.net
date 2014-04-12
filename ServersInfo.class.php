@@ -1,12 +1,12 @@
 <?PHP
-include_once('ConnectDB.class.php');
+include_once('ConnectDB.trait.php');
 
 class ServersInfo {
 
+	USE ConnectDB;
 	private $_servers = array();
 
 	public function __construct() {
-		parent::__construct();
 		$this->getdatafromdb();
 	}
 

@@ -1,5 +1,5 @@
 <?PHP
-include_once('GamesInfo.class.php');
+include_once('ServersInfo.class.php');
 $file = "private/passwd";
 if (!file_exists($file))
 {
