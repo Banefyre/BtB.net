@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:3306
--- Généré le :  Sam 12 Avril 2014 à 14:30
+-- Généré le :  Dim 13 Avril 2014 à 02:05
 -- Version du serveur :  5.5.36
 -- Version de PHP :  5.4.26
 
@@ -21,6 +21,20 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `game` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `game`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chat`
+--
+
+CREATE TABLE IF NOT EXISTS `chat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `time` datetime NOT NULL,
+  `login` varchar(255) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=69 ;
 
 -- --------------------------------------------------------
 
@@ -55,9 +69,10 @@ CREATE TABLE IF NOT EXISTS `game` (
   `name` varchar(255) NOT NULL,
   `max_players` int(11) NOT NULL DEFAULT '2',
   `status` varchar(255) NOT NULL DEFAULT 'waiting',
+  `info` mediumtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=93 ;
 
 -- --------------------------------------------------------
 
@@ -72,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `games_faction` (
   `selected` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=237 ;
 
 -- --------------------------------------------------------
 
@@ -85,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `games_players` (
   `id_game` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=132 ;
 
 -- --------------------------------------------------------
 
@@ -98,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `login` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
