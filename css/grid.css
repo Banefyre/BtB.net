@@ -127,6 +127,11 @@
 	width: 300px;
 	text-align: center;
 }
+#command_panel .title {
+	width: 300px;
+	text-align: center;
+	font-size: 2rem;
+}
 #command_panel #form_pp input {
 	width: calc(300px - 1.4rem);
 	margin: 0.5rem 0.5rem;

@@ -18,6 +18,7 @@
 	</div>
 	<br />
 	<div id="form_move">
+		<div class="title">Move</div>
 		<div id="nbr"></div>
 		<input id="left" type="image" src="images/arrow/left.png" onclick="PP_Weapon(this, 1);" />
 		<input id="up" type="image" src="images/arrow/up.png" onclick="PP_Weapon(this, 1);" />
@@ -25,6 +26,7 @@
 		<input onclick="PP_Weapon(this, 0);" type="button" value="Validate" />
 	</div>
 	<div id="form_weapon">
+		<div class="title">Weapon</div>
 		<div id="nbr"></div>
 		<input id="less" type="button" value="Less" onclick="PP_Weapon(this, -1);" />
 		<input id="more" type="button" value="More" onclick="PP_Weapon(this, 1);" />
