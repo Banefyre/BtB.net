@@ -48,6 +48,7 @@ else //connected to game
 	$gi = new Gamesinfo($_SESSION['id_game']);
 	if (!empty($_POST['faction']))
 	{
+		$_SESSION['viewFactions'] = "<div id=\"faction\" game=\"true\"></div>";
 		$_SESSION['game_started'] = true;
 		$gi->setFaction($_POST['faction']);
 	}

@@ -26,10 +26,8 @@
 	</div>
 	<input onclick="switchTurn()" id="end_turn" type="button" value="End Turn" />
 	</br>
-	<!--<div id="game_status">
-			Getting status...
-	</div>-->
 </div>
+<input id="game_status" type="button" value="Getting status..." />
 <form id="disconnect2" action="disconnect.php" method="post">
 	<input type="submit" value="Disconnect" />
 </form>

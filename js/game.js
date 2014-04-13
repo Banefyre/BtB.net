@@ -29,24 +29,24 @@ $(document).ready(function(){
 					res = res.trim();
 					console.log(res);
 					if (res == "waiting")
-						$('#game_status').text("Waiting for player to connect since " + i + " seconds");
+						$('#game_status').val("Waiting for player to connect since " + i + " seconds");
 					else if (res == "my_turn")
 					{
 						//alert(res);
-						$('#game_status').text("It\'s your turn !");
+						$('#game_status').val("It\'s your turn !");
 						if (turn == false)
 							updategrid();
 					}
 					else if (res == "finished")
 					{
-						$('#game_status').text("The other player disconnected, you won !");
+						$('#game_status').val("The other player disconnected, you won !");
 						setTimeout(function() {
 							window.location.replace("disconnect.php");
 						}, 5000);
 					}
 					else if (turn == false)
 					{
-						$('#game_status').text("It\'s "+res+" turn, wait a min :)");
+						$('#game_status').val("It\'s "+res+" turn, wait a min :)");
 					}
 				}
 		});

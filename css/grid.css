@@ -39,13 +39,19 @@
 	width: 11rem;
 	background-color: rgba(214, 69, 65, 1);
 }
-#box #content #disconnect2 input {
+#box #content #disconnect2 input, #box input#game_status {
 	position: absolute;
 	right: calc((350px - 11rem) / 2);
 	bottom: 0.5rem;
 	margin: auto;
 	width: 11rem;
 	background-color: rgba(214, 69, 65, 1);
+}
+#box input#game_status {
+	padding: 0;
+	bottom: calc((0.5rem * 2) + 1.5rem);
+	background-color: rgba(218, 223, 225, 1);
+	cursor: default;
 }
 #box #choose {
 	position: absolute;
