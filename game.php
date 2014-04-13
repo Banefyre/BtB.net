@@ -72,7 +72,6 @@ $.ajax({
 	data : { update : 'update' },
 	success : function(res) {
 		res = res.trim();
-		console.log(res);
 		if (res == "waiting")
 			$('#game_status').text("Waiting for player to connect since " + i + " seconds");
 		else if (res == "<?PHP echo $_SESSION['login'];?>")
