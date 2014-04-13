@@ -5,5 +5,6 @@ if(isset($_SESSION['id_game']))
 {
 	$gi = new GamesInfo($_SESSION['id_game']);
 	$gi->changeTurn();
+	$_SESSION['my_turn'] = false;
 }
 ?>

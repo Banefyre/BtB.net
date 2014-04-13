@@ -1,0 +1,5 @@
+	protected $_loading;			unsigned int
+	protected $_range_short;		unsigned int
+	protected $_range_middle;		unsigned int
+	protected $_range_long;			unsigned int
+	protected $_area_effect;		

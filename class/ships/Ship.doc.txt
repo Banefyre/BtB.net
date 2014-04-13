@@ -1,0 +1,9 @@
+	protected $_name;					string
+	protected $_width;					unsigned int
+	protected $_heigth;					unsigned int
+	protected $_shell;					unsigned int
+	protected $_power;					unsigned int
+	protected $_speed;					unsigned int
+	protected $_maneuverability;		unsigned int	
+	protected $_shield;					unsigned int
+	protected $_weapons;				array(class Weapon)

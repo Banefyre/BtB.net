@@ -1,6 +1,7 @@
 <?PHP
 
 include_once('ConnectDB.trait.php');
+include_once('class/Game.class.php');
 
 class GamesInfo
 {
@@ -70,8 +71,13 @@ class GamesInfo
 			$nbmax = $nbmax->fetch_assoc()['max_players'];
 
 		if ($nb == $nbmax)
+		{
 			$mysqli->query("UPDATE `game` SET `status` = '".$_SESSION['login']."' WHERE `id` = ".intval($this->_idGame));
-		$mysqli->close();
+			$mysqli->close();
+			$this->createGame();
+		}
+		else
+			$mysqli->close();
 	}
 
 	public function disconnect($login)
@@ -105,6 +111,62 @@ class GamesInfo
 		}
 
 		$mysqli->close();
+	}
+
+	public function createGame()
+	{
+		$mysqli = $this->connect();
+		if (($res = $mysqli->query("SELECT `users`.`login` FROM `users` INNER JOIN `games_players` ON `users`.`id` = `games_players`.`id_user` WHERE `games_players`.`id_game` = ".intval($this->_idGame))) === false)
+			echo $mysqli->error;
+		else
+		{
+			while ($tmp = $res->fetch_assoc())
+			$result[] = $tmp;
+		}
+
+		$game = new Game(array(	'width' => 150,
+		'height' => 100));
+
+
+		$p1 = new Player(array('name' => $result[0]['login']));
+		$p2 = new Player(array('name' => $result[1]['login']));
+		$spear = new NavalSpear();
+		$fregate1 = new Frigate(array(	'name' => 'Hand Of The Emperor',
+			'weapons' => array($spear)));
+		$fregate1->setPos(1,1, Ship::ORIENTATION_EAST);
+		$fregate2 = new Frigate(array(	'name' => 'Black Rock',
+			'weapons' => array($spear)));
+		$fregate2->setPos(1,3, Ship::ORIENTATION_EAST);
+		$fregate3 = new Frigate(array(	'name' => 'Hand Of The Emperor',
+			'weapons' => array($spear)));
+		$fregate3->setPos(145, 98, Ship::ORIENTATION_WEST);
+		$p1->addShip($fregate1);
+		$p1->addShip($fregate2);
+		$p2->addShip($fregate3);
+		$game->addPlayer($p1);
+		$game->addPlayer($p2);
+		$ser = serialize($game);
+
+		echo "test";
+
+		$mysqli->query("INSERT INTO `game` SET `info` = '".$ser."' WHERE id=".intval($this->_idGame));
+
+		$mysqli->close();
+		//$game->init();
+	}
+
+	public function loadGame()
+	{
+		$mysqli = $this->connect();
+
+		if (($res = $mysqli->query("SELECT `info` FROM `game` WHERE `id` = '".intval($this->_idGame)."'")) === false)
+			echo $mysqli->error;
+		else
+			$res = $res->fetch_assoc()['info'];
+		echo "$res";
+		$ser = unserialize($res);
+		$mysqli->close();
+		return ($ser);
 	}
 }
 

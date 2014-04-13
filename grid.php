@@ -1,5 +1,11 @@
 <div id ="grid">
 <?PHP
+	if (!isset($_SESSION))
+		session_start();
+	require_once("GamesInfo.class.php");
+	$gi = new GamesInfo($_SESSION['id_game']);
+	$game = $gi->loadGame();
+	print_r($game);
 	for ($i = 0 ; $i < 100; $i++)
 	{
 		for ($j = 0 ; $j < 150 ; $j++)
