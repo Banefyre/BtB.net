@@ -6,6 +6,7 @@ if (isset($_SESSION['id_game']))
 	$gi = new GamesInfo($_SESSION['id_game']);
 	$gi->disconnect($_SESSION['login']);
 	unset($_SESSION['id_game']);
+	unset($_SESSION['game_started']);
 }
 header('Location: server_list.php');
 ?>

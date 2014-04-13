@@ -26,6 +26,7 @@ foreach ($servers as $serv)
 <html>
 	<head>
 		<title>Rush01</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/general.css" />
 		<link rel="stylesheet" type="text/css" href="css/connect.css" />
 		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -36,21 +37,27 @@ foreach ($servers as $serv)
 			<a href="logout.php">logout</a>
 		</div>
 		<div id="box">
-			<div class="chatbox">
-			</div>
+			<div class="chatbox"></div>
 			<div class="serverbox">
+				<div>
+					<div class="server">Name</div>
+					<div class="players">Plr.</div>
+					<div class="connect"></div>
+				</div>
+				<span id="server_list">
 				<?=$server_list; ?>
+				</span>
 				<div class="form">
 					<form action="game.php" method="post">
-						<label>Game name</label>
-						<input type="text" name="game_name" />
+						<input type="text" name="game_name" placeholder="<?php echo (!empty($_GET['error']) && $_GET['error'] == 'name') ? 'Game Name Error' : 'New Game Name'; ?>" />
 						<input type="submit" value="create" name="status" />
+						<input type="button" value="refresh" id="refresh" />
 					</form>
 				</div>
 			</div>
 			<br />
 			<div class="talkbox">
-				<input type='text' id="talk" />
+				<input type="text" id="talk" />
 			</div>
 		</div>
 	</body>

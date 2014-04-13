@@ -18,7 +18,7 @@ class GamesInfo
 	{
 		$result = array();
 		$mysqli = $this->connect();
-		if (($res = $mysqli->query("SELECT `faction`.`name`, `games_faction`.`selected`, `games_faction`.`id` FROM `game` INNER JOIN `games_faction` ON `games_faction`.`id_game` = `game`.`id` INNER JOIN `faction` ON `faction`.`id` = `games_faction`.`id_faction` WHERE `game`.`id` = ".intval($this->_idGame)." ORDER BY `faction`.`name` ASC")) === false)
+		if (($res = $mysqli->query("SELECT `faction`.`name`, `games_faction`.`selected`, `games_faction`.`id` FROM `game` INNER JOIN `games_faction` ON `games_faction`.`id_game` = `game`.`id` INNER JOIN `faction` ON `faction`.`id` = `games_faction`.`id_faction` WHERE `game`.`id` = ".intval($this->_idGame)." ORDER BY `faction`.`name` DESC")) === false)
 			echo $mysqli->error;
 		while ($tmp = $res->fetch_assoc())
 		{
@@ -144,7 +144,6 @@ class GamesInfo
 		$faction_p1 = $result2[0]['name'];
 		$faction_p2 = $result2[1]['name'];
 
-
 		$game = new Game(array(	'width' => 150,
 		'height' => 100));
 
@@ -166,8 +165,6 @@ class GamesInfo
 		$game->addPlayer($p1);
 		$game->addPlayer($p2);
 		$ser = serialize($game);
-
-
 
 		if ($mysqli->query("UPDATE `game` SET `info` = '".$ser."' WHERE `id` = ".intval($this->_idGame)) === false)
 			echo $mysqli->error;

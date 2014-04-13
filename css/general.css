@@ -30,11 +30,13 @@ input {
 	border: 3px solid rgba(255, 255, 255, 1);
 	border-radius: 2px;
 	box-shadow: 1px 1px 0.5rem rgba(103, 128, 159, 0.5);
+	outline: none;
 }
 input[type=submit], input[type=button] {
 	width: auto;
 	background-color: rgba(38, 194, 129, 1);
 	border: 3px solid rgba(255, 255, 255, 1);
+	cursor: pointer;
 }
 
 #bar {

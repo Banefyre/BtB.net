@@ -35,6 +35,7 @@ if (!empty($_POST['login']))
 <html>
 	<head>
 		<title>Rush01</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/general.css" />
 		<link rel="stylesheet" type="text/css" href="css/auth.css" />
 	</head>

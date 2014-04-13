@@ -18,9 +18,12 @@
 #box div.chatbox {
 	float: left;
 	width: calc(65% - 1rem);
-	height: calc(100% - 5rem);
-	margin-bottom: 2rem;
+	height: calc(100% - 2.5rem);
+	margin-bottom: 1rem;
 	text-align: center;
+}
+#box div.chatbox span {
+	color: rgba(72, 93, 114, 1);
 }
 #box div.chatbox div>div {
 	width: 100%;
@@ -44,18 +47,19 @@
 #box div.talkbox {
 	float: left;
 	width: calc(65% - 1rem);
-	height: 3rem;
+	height: 1.5rem;
 	padding: 0;
 }
-#box div.talkbox textarea {
+#box div.talkbox input {
 	width: 100%;
 	height: 100%;
 	max-width: 100%;
 	max-height: 100%;
 	margin: 0;
-	padding: 0.2rem;
+	padding: 0 0.3rem;
 	border: none;
 	font-size: 0.7rem;
+	text-align: left;
 	background-color: transparent;
 	font-family: Freedom, Arial;
 	outline: none;
@@ -91,9 +95,30 @@
 #box div.serverbox div div:last-child input {
 	margin: 0.1rem;
 }
+#box div.serverbox div>div.server, #box div.serverbox div>div.players {
+	font-style: italic;
+	margin-bottom: 0.3rem;
+}
+#box div.serverbox #server_list .server, #box div.serverbox #server_list .players, #box div.serverbox #server_list .connect {
+	font-style: normal;
+}
 #box div.serverbox div.form {
 	position: absolute;
 	left: 0;
 	right: 0;
 	bottom: 0.1rem;
+}
+#box div.serverbox div.form input[type=text] {
+	width: calc(100% - 1rem);
+	margin: 0.3rem;
+	margin-bottom: 0;
+}
+#box div.serverbox div.form input[type=button] {
+	background-color: rgba(245, 171, 53, 1);
+}
+#box div.serverbox div.form input[type=button], #box div.serverbox div.form input[type=submit] {
+	float: left;
+	width: calc(50% - 1rem);
+	margin: 0.5rem;
+	margin-bottom: 0.3rem;
 }

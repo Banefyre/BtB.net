@@ -19,17 +19,14 @@ final Class Connect
 	private function chooseFaction()
 	{
 		$factions = $this->_gi->getFactions();
-		echo "<div id='faction'>";
-		echo "<h3>Choose a faction</h3>";
+		$_SESSION['viewFactions'] = "\t\t\t<div id=\"faction\" game=\"".((isset($_SESSION['game_started']) && $_SESSION['game_started']) ? 'true' : 'false')."\">\n";
 		foreach ($factions as $faction)
-		{
-			if ($faction['selected'])
-				echo "<input class='selected' style='color : red' id='".$faction['id']."' type='submit' value='".$faction['name']."' />";
-			else
-				echo "<input class='faction' id='".$faction['id']."' type='submit' value='".$faction['name']."' />";
-		}
-		echo "</div>";
+			$_SESSION['viewFactions'] .= "\t\t\t\t<img src=\"images/factions/".strtolower($faction['name']).".jpg\" id=\"".$faction['id']."\" class=\"".($faction['selected'] ? 'false' : 'true')."\" />";
+		$_SESSION['viewFactions'] .= "\t\t\t</div>";
 	}
 }
 
 ?>
+
+
+
