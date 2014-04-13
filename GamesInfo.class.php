@@ -73,7 +73,39 @@ class GamesInfo
 			$mysqli->query("UPDATE `game` SET `status` = '".$_SESSION['login']."' WHERE `id` = ".intval($this->_idGame));
 		$mysqli->close();
 	}
-}
 
+	public function disconnect($login)
+	{
+		$mysqli = $this->connect();
+		if (($id = $mysqli->query("SELECT `id` FROM `users` WHERE `login` = '".$_SESSION['login']."'")) === false)
+			echo $mysqli->error;
+		else
+			$id = $id->fetch_assoc()['id'];
+
+		$mysqli->query("DELETE FROM `games_players` WHERE `id_user` = ".intval($id)." AND `id_game` = ".intval($this->_idGame));
+		$mysqli->query("UPDATE `game` SET `status` = 'finished' WHERE `id` = ".intval($this->_idGame));
+		$mysqli->close();
+	}
+
+	public function changeTurn()
+	{
+		$result = array();
+		$mysqli = $this->connect();
+		if (($status = $mysqli->query("SELECT `status` FROM `game` WHERE `id` = ".intval($this->_idGame))) === false)
+			echo $mysqli->error;
+		$status = $status->fetch_assoc()['status'];
+		if (($res = $mysqli->query("SELECT `users`.`login` FROM `users` INNER JOIN `games_players` ON `users`.`id` = `games_players`.`id_user` WHERE `games_players`.`id_game` = ".intval($this->_idGame))) === false)
+			echo $mysqli->error;
+		while ($tmp = $res->fetch_assoc())
+		{
+			if ($tmp['login'] != $status)
+			{
+				$mysqli->query("UPDATE `game` SET `status` = '".$tmp['login']."' WHERE `id` = ".intval($this->_idGame));
+			}
+		}
+
+		$mysqli->close();
+	}
+}
 
 ?>

@@ -25,7 +25,7 @@ class ServersInfo
 	private function getdatafromdb()
 	{
 		$mysqli = $this->connect();
-		$req = $mysqli->query("SELECT * FROM `game` ORDER BY `id` ASC");
+		$req = $mysqli->query("SELECT * FROM `game` WHERE `status` != 'finished' ORDER BY `id` ASC");
 		while (($res = $req->fetch_assoc()))
 		{
 			$players = $this->getPlayersByGame($mysqli,$res['id']);

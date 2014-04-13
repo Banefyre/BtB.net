@@ -1,5 +1,8 @@
 <?PHP
 session_start();
+if (isset($_SESSION['login']))
+	header('Location: server_list.php');
+
 require_once("Auth.class.php");
 $error = false;
 if (!empty($_POST['login']))
@@ -33,10 +36,11 @@ if (!empty($_POST['login']))
 	<head>
 		<title>Rush01</title>
 		<link rel="stylesheet" type="text/css" href="css/general.css" />
+		<link rel="stylesheet" type="text/css" href="css/auth.css" />
 	</head>
 	<body>
 		<div id="bar">
-			<a href="#login">login</a>
+			<a href="#login">bienvenue</a>
 		</div>
 		<div id="box">
 			<div class="minibox">

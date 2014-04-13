@@ -13,5 +13,17 @@ $(document).ready(function(){
 			});
 	});
 
+	$('#end_turn').click(function ()
+	{
+		console.log("clikc");
+		$.ajax({
+				url : 'changeturn.php',
+				method : 'POST',
+				data : { changeturn : "changeturn"},
+				success : function () {
+				}
+			});
+	});
+
 
 });

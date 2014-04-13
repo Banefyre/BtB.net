@@ -10,7 +10,7 @@ html, body {
 	font-family: Freedom, Arial;
 	font-size: 1.5rem;
 	color: rgba(34, 49, 63, 1);
-	background: #000 url('../images/background1.jpg') no-repeat;
+	background: #000 url('../images/background2.jpg') no-repeat;
 	background-size: cover;
 	-webkit-user-select: none;
 }
@@ -57,51 +57,8 @@ input[type=submit], input[type=button] {
 	left: 0;
 	right: 0;
 	bottom: 0;
+	margin: auto;
 	width: 1000px;
 	height: 600px;
-	margin: auto;
-	padding: 1rem 1rem;
-	background-color: rgba(238, 238, 238, 0.9);
-	box-shadow: 0 0 0.5rem rgba(238, 238, 238, 0.9);
-	border: 2px solid rgba(158, 158, 158, 1);
-	border-radius: 0.3rem;
 	box-sizing: border-box;
-}
-#box div.minibox {
-	width: calc(50% - 2px);
-	height: 100%;
-	font-size: 1rem;
-	text-align: center;
-}
-#box div.minibox:nth-child(1) {
-	float: left;
-	border-right: 2px inset rgba(158, 158, 158, 0.5);
-	border-radius: 2px;
-}
-#box div.minibox input:nth-child(1) {
-	margin-top: 6rem;
-}
-#box div.minibox:nth-child(2) {
-	float: right;
-}
-#box div.minibox:nth-child(2) input:nth-child(1) {
-	margin-top: 4.5rem;
-}
-#box div.minibox:nth-child(2) input {
-	margin-bottom: 1rem;
-}
-#box div.minibox>label:nth-child(1) {
-	font-size: 1.5rem;
-}
-#box div.minibox input[type=submit], #box div.minibox input[type=button] {
-	margin-top: 3rem;
-}
-#box div.minibox:nth-child(2) input[type=button], #box div.minibox:nth-child(2) input[type=submit] {
-	margin-top: 1.5rem;
-	background-color: rgba(75, 119, 190, 1);
-}
-
-#box div.minibox input[type=submit].login_error
-{
-	box-shadow: 1px 1px 0.5rem rgba(192, 57, 43, 0.9);
 }

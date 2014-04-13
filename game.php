@@ -72,10 +72,18 @@ $.ajax({
 	data : { update : 'update' },
 	success : function(res) {
 		res = res.trim();
+		console.log(res);
 		if (res == "waiting")
 			$('#game_status').text("Waiting for player to connect since " + i + " seconds");
 		else if (res == "<?PHP echo $_SESSION['login'];?>")
 			$('#game_status').text("It\'s your turn !");
+		else if (res == "finished")
+		{
+			$('#game_status').text("The other player disconnected, you won !");
+			setTimeout(function() {
+				window.location.replace("disconnect.php");
+			}, 5000);
+		}
 		else
 			$('#game_status').text("It\'s "+res+" turn, wait a min :)");
 	}
@@ -83,6 +91,8 @@ $.ajax({
 }, 1000);
 
 </script>
-
+<form method='POST' action='disconnect.php'>
+<input type="submit" value="Disconnect" />
+</form>
 </body>
 </html>
