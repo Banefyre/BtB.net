@@ -8,12 +8,6 @@ if (!isset($_SESSION['login']))
 if (isset($_SESSION['id_game']))
 	header('Location: game.php');
 
-$chat_list = "<div>
-\t\t\t\t\t<div><div>Arubinu</div>Je ne fais rien qu'un test, un simple test pour ce rush qui avance plut&ocirc;t bien ^^</div>
-\t\t\t\t\t<div><div>Paul</div>Ok ta gueule</div>
-\t\t\t\t\t<div><div>Paul</div>Ooups Excuse</div>
-\t\t\t\t\t<div><div>Arubinu</div>...</div>
-\t\t\t\t</div>\n";
 $server_list = '';
 foreach ($servers as $serv)
 {
@@ -43,7 +37,6 @@ foreach ($servers as $serv)
 		</div>
 		<div id="box">
 			<div class="chatbox">
-				<?=$chat_list; ?>
 			</div>
 			<div class="serverbox">
 				<?=$server_list; ?>
@@ -57,7 +50,7 @@ foreach ($servers as $serv)
 			</div>
 			<br />
 			<div class="talkbox">
-				<textarea id="talk"></textarea>
+				<input type='text' id="talk" />
 			</div>
 		</div>
 	</body>
