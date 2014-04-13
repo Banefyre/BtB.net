@@ -18,7 +18,7 @@ setInterval(function (){
 						//alert(res);
 						turn = true;
 						$('#game_status').text("It\'s your turn !");
-						//updategrid();
+						updategrid();
 					}
 					else if (res == "finished")
 					{
@@ -59,10 +59,9 @@ setInterval(function (){
 
 	function updategrid()
 	{
-		//remove all grid child
-		//load grid
+		$('#grid').empty();
+		$('#content').load('grid.php');
 	}
-
 
 
 });

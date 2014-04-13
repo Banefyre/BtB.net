@@ -26,7 +26,7 @@ class ServersInfo
 	{
 		$mysqli = $this->connect();
 		$req = $mysqli->query("SELECT * FROM `game` WHERE `status` != 'finished' ORDER BY `id` ASC");
-		while (($res = $req->fetch_assoc()))
+		while ($req && ($res = $req->fetch_assoc()))
 		{
 			$players = $this->getPlayersByGame($mysqli,$res['id']);
 			$res['player_connected'] = count($players);

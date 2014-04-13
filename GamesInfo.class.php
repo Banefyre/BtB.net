@@ -148,8 +148,8 @@ class GamesInfo
 		$ser = serialize($game);
 
 
-		$mysqli->query("INSERT INTO `game` SET `info` = '".$ser."' WHERE id=".intval($this->_idGame));
-
+		if ($mysqli->query("UPDATE `game` SET `info` = '".$ser."' WHERE `id` = ".intval($this->_idGame)) === false)
+			echo $mysqli->error;
 		$mysqli->close();
 		//$game->init();
 	}
@@ -162,7 +162,6 @@ class GamesInfo
 			echo $mysqli->error;
 		else
 			$res = $res->fetch_assoc()['info'];
-		echo "$res";
 		$ser = unserialize($res);
 		$mysqli->close();
 		return ($ser);
