@@ -11,7 +11,6 @@ setInterval(function (){
 				data : { update : 'update' },
 				success : function(res) {
 					res = res.trim();
-					console.log(res);
 					if (res == "waiting")
 						$('#game_status').text("Waiting for player to connect since " + i + " seconds");
 					else if (res == "my_turn" && turn == false)
@@ -39,7 +38,6 @@ setInterval(function (){
 
  $('.faction').click(function ()
 	{
-		console.log(21);
 		turn = false;
 		$.ajax({
 				url : 'game.php',
@@ -48,7 +46,6 @@ setInterval(function (){
 				success : function () {
 					$('#faction').hide();
 					$('#content').load('grid.php');
-					console.log(42);
 				}
 			});
 	});
@@ -73,11 +70,9 @@ setInterval(function (){
 
 	function switchTurn()
 		{
-			console.log("turn: " + turn);
 		if (turn == true)
 		{
 			turn = false;
-			console.log(1);
 		$.ajax({
 				url : 'changeturn.php',
 				method : 'POST',

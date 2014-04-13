@@ -8,7 +8,6 @@ $('#talk').keypress(function(e) {
 		method: "POST",
 		data: { message : $(this).val() },
 		success: function(res) {
-			console.log(res);
 		$('#talk').val("");
 		}});
     }
@@ -23,7 +22,7 @@ setInterval(function (){
 	res = jQuery.parseJSON(res);
 	$('.chatbox').empty();
 	res.forEach(function(entry) {
-		$('.chatbox').append('<div>' + entry['login'] + ' : ' + entry['message'] + '</div>');
+		$('.chatbox').append('<div><span>' + entry['login'] + '</span> : ' + entry['message'] + '</div>');
 	})}});
 }, 1000);
 

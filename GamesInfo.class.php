@@ -147,7 +147,6 @@ class GamesInfo
 		$game->addPlayer($p2);
 		$ser = serialize($game);
 
-		echo "test";
 
 		$mysqli->query("INSERT INTO `game` SET `info` = '".$ser."' WHERE id=".intval($this->_idGame));
 
