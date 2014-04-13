@@ -9,7 +9,7 @@ function button_activate()
 		url : 'getship.php',
 		method: 'POST',
 		//dataType : 'json',
-		data : { id : selected },
+		data : { id : selected.substr(1) },
 		success : function(res) {
 			res = res.trim();
 			console.log(res);
@@ -127,7 +127,7 @@ function PP_Change()
 	$.ajax({
 		url: "updateship.php",
 		method: "POST",
-		data : { id : selected, speed : $('#speed').val(), shield : $('#shield').val(), weapon : $('#weapon').val(), shell : $('#shell').val() },
+		data : { id : selected.substring(1), speed : $('#speed').val(), shield : $('#shield').val(), weapon : $('#weapon').val(), shell : $('#shell').val() },
 		success : function(res){
 			console.log(res);
 		}
@@ -172,7 +172,16 @@ function PP_Move(elem, nbr)
 	{
 		console.log('PP_Move(1)');
 		nbr = $nbr_move - nbr;
-		$nbr_move = (nbr < 0) ? $nbr_move : nbr;
+		if (nbr >= 0)
+		{
+			switch ($(this).attr('id'))
+			{
+				case 'left': $('#v' + selected).webkitTransform('rotate: -90deg'); break;
+				case 'right': $('#v' + selected).webkitTransform('rotate: 90deg'); break;
+				//case 'up': $('#' + selected). break;
+			}
+			$nbr_move = nbr;
+		}
 		$('#form_move #nbr').text($nbr_move);
 	}
 	else
