@@ -144,7 +144,6 @@ class GamesInfo
 		$faction_p1 = $result2[0]['name'];
 		$faction_p2 = $result2[1]['name'];
 
-		file_put_contents('file', $faction_p1.' '.$faction_p2);
 
 		$game = new Game(array(	'width' => 150,
 		'height' => 100));
@@ -169,7 +168,6 @@ class GamesInfo
 		$ser = serialize($game);
 
 
-		file_put_contents('test', 'test4');
 
 		if ($mysqli->query("UPDATE `game` SET `info` = '".$ser."' WHERE `id` = ".intval($this->_idGame)) === false)
 			echo $mysqli->error;
