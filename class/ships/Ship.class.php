@@ -2,16 +2,17 @@
 
 abstract class Ship
 {
-	const ORIENTATION_WEST = 'ORIENTATION_WEST';
-	const ORIENTATION_SOUTH = 'ORIENTATION_SOUTH';
-	const ORIENTATION_NORTH = 'ORIENTATION_NORTH';
-	const ORIENTATION_EAST = 'ORIENTATION_EAST';
+	const ORIENTATION_WEST = '90';
+	const ORIENTATION_SOUTH = '-180';
+	const ORIENTATION_NORTH = '180';
+	const ORIENTATION_EAST ='-90';
 	const MOVE_RIGHT = 'MOVE_RIGHT';
 	const MOVE_LEFT = 'MOVE_LEFT';
 	const MOVE_UP = 'MOVE_UP';
 	const MOVE_NO = 'MOVE_NO';
 
 	protected $_name = 'noname';
+	protected $_id;
 	protected $_type = '';
 	protected $_width = 1;
 	protected $_height = 1;
@@ -30,6 +31,7 @@ abstract class Ship
 	protected $_previous_move = 0;
 	protected $_left_move = 0;
 	protected $_can_turn = false;
+	protected $_img;
 
 	function __construct(array $kwargs)
 	{
@@ -240,6 +242,16 @@ abstract class Ship
 	public function getCanTurn()
 	{
 		return $this->_can_turn;
+	}
+
+	public function getImg()
+	{
+		return $this->_img;
+	}
+
+	public function getId()
+	{
+		return $this->_id;
 	}
 
 /************************************************

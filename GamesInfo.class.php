@@ -2,6 +2,7 @@
 
 include_once('ConnectDB.trait.php');
 include_once('class/Game.class.php');
+include_once('Connect.class.php');
 
 class GamesInfo
 {
@@ -30,31 +31,12 @@ class GamesInfo
 	public function setFaction($id)
 	{
 		$mysqli = $this->connect();
-		if (($res = $mysqli->query("UPDATE `games_faction` SET `selected` = '1' WHERE `games_faction`.`id` = ".intval($id))) === false)
-			echo $mysqli->error;
-		$mysqli->close();
-	}
 
-	public function status()
-	{
-		$mysqli = $this->connect();
-		if (($res = $mysqli->query("SELECT `status` FROM `game` WHERE id = ".intval($this->_idGame))) === false)
+		if (($id_l = $mysqli->query("SELECT `id` FROM `users` WHERE `login` = '".$_SESSION['login']."'")) === false)
 			echo $mysqli->error;
 		else
-			$ret = $res->fetch_assoc();
-		$mysqli->close();
-		return($ret['status']);
-	}
-
-	public function connectPlayer()
-	{
-		$mysqli = $this->connect();
-		if (($id = $mysqli->query("SELECT `id` FROM `users` WHERE `login` = '".$_SESSION['login']."'")) === false)
-			echo $mysqli->error;
-		else
-			$id = $id->fetch_assoc()['id'];
-
-		if (($res2 = $mysqli->query("INSERT INTO `games_players` (id_game, id_user)  VALUE (".intval($this->_idGame).", ".intval($id).")")) === false)
+			$id_l = $id_l->fetch_assoc()['id'];
+		if (($res = $mysqli->query("UPDATE `games_faction` SET `selected` = 1, `id_player` = ".intval($id_l)." WHERE `id` = ".intval($id))) === false)
 			echo $mysqli->error;
 
 		if (($nb = $mysqli->query("SELECT * FROM `games_players` WHERE `id_game` = ".intval($this->_idGame))) === false)
@@ -79,6 +61,31 @@ class GamesInfo
 		else
 			$mysqli->close();
 	}
+
+	public function status()
+	{
+		$mysqli = $this->connect();
+		if (($res = $mysqli->query("SELECT `status` FROM `game` WHERE id = ".intval($this->_idGame))) === false)
+			echo $mysqli->error;
+		else
+			$ret = $res->fetch_assoc();
+		$mysqli->close();
+		return($ret['status']);
+	}
+
+	public function connectPlayer()
+	{
+		$mysqli = $this->connect();
+		if (($id = $mysqli->query("SELECT `id` FROM `users` WHERE `login` = '".$_SESSION['login']."'")) === false)
+			echo $mysqli->error;
+		else
+			$id = $id->fetch_assoc()['id'];
+
+		if (($res2 = $mysqli->query("INSERT INTO `games_players` (id_game, id_user)  VALUE (".intval($this->_idGame).", ".intval($id).")")) === false)
+			echo $mysqli->error;
+		$mysqli->close();
+	}
+
 
 	public function disconnect($login)
 	{
@@ -115,31 +122,36 @@ class GamesInfo
 
 	public function createGame()
 	{
+
 		$mysqli = $this->connect();
-		if (($res = $mysqli->query("SELECT `users`.`login` FROM `users` INNER JOIN `games_players` ON `users`.`id` = `games_players`.`id_user` WHERE `games_players`.`id_game` = ".intval($this->_idGame))) === false)
+		if (($res = $mysqli->query("SELECT `users`.`login`, `users`.`id` FROM `users` INNER JOIN `games_players` ON `users`.`id` = `games_players`.`id_user` WHERE `games_players`.`id_game` = ".intval($this->_idGame))) === false)
 			echo $mysqli->error;
 		else
 		{
 			while ($tmp = $res->fetch_assoc())
-			$result[] = $tmp;
+				$result[] = $tmp;
 		}
+
+
+		//bdd faction
+		$faction_p1 = "Human";
+		$faction_p2 = "Alien";
 
 		$game = new Game(array(	'width' => 150,
 		'height' => 100));
 
-
 		$p1 = new Player(array('name' => $result[0]['login']));
 		$p2 = new Player(array('name' => $result[1]['login']));
 		$spear = new NavalSpear();
-		$fregate1 = new Frigate(array(	'name' => 'Hand Of The Emperor',
+		$fregate1 = new Frigate(array(	'name' => 'Hand Of The Emperor', 'faction' => $faction_p1, 'id' => 0,
 			'weapons' => array($spear)));
-		$fregate1->setPos(1,1, Ship::ORIENTATION_EAST);
-		$fregate2 = new Frigate(array(	'name' => 'Black Rock',
+		$fregate1->setPos(3,4, Ship::ORIENTATION_EAST);
+		$fregate2 = new Frigate(array(	'name' => 'Black Rock', 'faction' => $faction_p1,'id' => 1,
 			'weapons' => array($spear)));
-		$fregate2->setPos(1,3, Ship::ORIENTATION_EAST);
-		$fregate3 = new Frigate(array(	'name' => 'Hand Of The Emperor',
+		$fregate2->setPos(10,4, Ship::ORIENTATION_EAST);
+		$fregate3 = new Frigate(array(	'name' => 'Hand Of The Emperor', 'faction' => $faction_p2,'id=' => 2,
 			'weapons' => array($spear)));
-		$fregate3->setPos(145, 98, Ship::ORIENTATION_WEST);
+		$fregate3->setPos(140, 90, Ship::ORIENTATION_WEST);
 		$p1->addShip($fregate1);
 		$p1->addShip($fregate2);
 		$p2->addShip($fregate3);
@@ -148,8 +160,13 @@ class GamesInfo
 		$ser = serialize($game);
 
 
+		file_put_contents('test', 'test4');
+
 		if ($mysqli->query("UPDATE `game` SET `info` = '".$ser."' WHERE `id` = ".intval($this->_idGame)) === false)
 			echo $mysqli->error;
+
+
+
 		$mysqli->close();
 		//$game->init();
 	}
@@ -162,6 +179,8 @@ class GamesInfo
 			echo $mysqli->error;
 		else
 			$res = $res->fetch_assoc()['info'];
+		if ($res == "")
+			return false;
 		$ser = unserialize($res);
 		$mysqli->close();
 		return ($ser);

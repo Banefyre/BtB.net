@@ -4,7 +4,7 @@ var turn = true;
 $(document).ready(function(){
 
 setInterval(function (){
-	i++;
+	i += 5;
 		$.ajax({
 			url : 'status.php',
 				method: 'POST',
@@ -13,12 +13,12 @@ setInterval(function (){
 					res = res.trim();
 					if (res == "waiting")
 						$('#game_status').text("Waiting for player to connect since " + i + " seconds");
-					else if (res == "my_turn" && turn == false)
+					else if (res == "my_turn")
 					{
 						//alert(res);
-						turn = true;
 						$('#game_status').text("It\'s your turn !");
-						updategrid();
+						if (turn == false)
+							updategrid();
 					}
 					else if (res == "finished")
 					{
@@ -54,16 +54,15 @@ setInterval(function (){
 	$('.cell').click(function moveTo() {
 		var x = Math.abs($('.ship').position().left - $(this).position().left);
 		var y = Math.abs($('.ship').position().top - $(this).position().top);
-		$('.ship').animate({ top: (-1000) + ($(this).attr('y') * 10), left: ($(this).attr('x') * 10)}, Math.abs(x + y) * 4);
+		$('.ship').animate({ top: ($(this).attr('y') * 10), left: ($(this).attr('x') * 10)}, Math.abs(x + y) * 4);
 	});
 
 	function updategrid()
 	{
+		turn = true;
 		$('#grid').empty();
 		$('#content').load('grid.php');
 	}
-
-
 });
 
 
