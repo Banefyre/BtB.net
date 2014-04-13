@@ -12,6 +12,7 @@ class Frigate extends Ship
 		$this->setPower(10);
 		$this->setManeuverability(4);
 		$this->setShield(0);
+		$this->setSpeed(10);
 
 		if (array_key_exists('faction', $kwargs))
 		{

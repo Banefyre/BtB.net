@@ -42,6 +42,9 @@ abstract class Ship
 			foreach ($kwargs['weapons'] as $weapon)
 				$this->addWeapon($weapon);
 		}
+		if (array_key_exists('id', $kwargs))
+			$this->_id = $kwargs['id'];
+
 	}
 
 	function __toString()
@@ -252,6 +255,17 @@ abstract class Ship
 	public function getId()
 	{
 		return $this->_id;
+	}
+
+	public function getData()
+	{
+		$array = array
+			(
+				'power' => $this->getPower(),
+				'speed' => $this->getSpeed(),
+				'shell' => $this->getShell()
+			);
+		return ($array);
 	}
 
 /************************************************

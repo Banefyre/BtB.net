@@ -156,7 +156,7 @@ class GamesInfo
 		$fregate2 = new Frigate(array(	'name' => 'Black Rock', 'faction' => $faction_p1,'id' => 1,
 			'weapons' => array($spear)));
 		$fregate2->setPos(10,4, Ship::ORIENTATION_EAST);
-		$fregate3 = new Frigate(array(	'name' => 'Hand Of The Emperor', 'faction' => $faction_p2,'id=' => 2,
+		$fregate3 = new Frigate(array(	'name' => 'Hand Of The Emperor', 'faction' => $faction_p2, 'id' => 2,
 			'weapons' => array($spear)));
 		$fregate3->setPos(140, 90, Ship::ORIENTATION_WEST);
 		$p1->addShip($fregate1);
@@ -188,6 +188,14 @@ class GamesInfo
 		$ser = unserialize($res);
 		$mysqli->close();
 		return ($ser);
+	}
+
+	public function saveGame($ser)
+	{
+		$mysqli = $this->connect();
+		if ($mysqli->query("UPDATE `game` SET `info` = '".$ser."' WHERE `id` = ".intval($this->_idGame)) === false)
+			echo $mysqli->error;
+		$mysqli->close();
 	}
 }
 
