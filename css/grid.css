@@ -41,7 +41,7 @@
 }
 #box #content #disconnect2 input, #box input#game_status {
 	position: absolute;
-	right: calc((350px - 11rem) / 2);
+	right: calc((350px - 13rem) / 2);
 	bottom: 0.5rem;
 	margin: auto;
 	width: 11rem;
@@ -122,7 +122,7 @@
 	height: auto;
 	padding: 0;
 }
-#command_panel #form_pp, #command_panel #form_move, #command_panel #end_turn {
+#command_panel #form_pp, #command_panel #form_move, #command_panel #form_weapon {
 	display: none;
 	width: 300px;
 	text-align: center;
@@ -130,6 +130,11 @@
 #command_panel #form_pp input {
 	width: calc(300px - 1.4rem);
 	margin: 0.5rem 0.5rem;
+}
+#command_panel #form_move input[type=image] {
+	width: auto;
+	height: auto;
+	margin: 0.2rem 0.2rem 0.5rem;
 }
 #command_panel #nbr {
 	font-size: 3.5rem;
@@ -140,9 +145,21 @@
 	text-shadow: 0 0 12px rgba(214, 69, 65, 1);
 	color: rgba(214, 69, 65, 1);
 }
-#form_activate input[type=button] {
+#form_activate input[type=button], #form_move input[type=button], #form_weapon input[type=button], #form_weapon input[type=submit] {
 	width: calc(300px - 1.4rem);
 	margin: 0.5rem 0.6rem;
+}
+#form_weapon input[type=button] {
+	float: left;
+	width: calc((300px - 2.2rem) / 2);
+	margin-bottom: 0;
+	background-color: rgba(245, 171, 53, 1);
+}
+#form_weapon #less {
+	margin-right: 0.4rem;
+}
+#form_weapon #more {
+	margin-left: 0.4rem;
 }
 .ship {
 	display: block;

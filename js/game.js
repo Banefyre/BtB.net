@@ -122,13 +122,55 @@ function PP_Change()
 	}
 	return (false);
 }
-function PP_Move()
+$nbr_move = 0;
+function PP_Move(elem, nbr)
 {
-	if (PP_Change())
+	if (PP_Change() && nbr < 0)
 	{
-		$('#form_move #nbr').attr('alt', $('#form_pp #speed').val());
+		console.log('PP_Move(-1)');
+		$nbr_move = parseInt($('#form_pp #speed').val());
 		$('#form_move #nbr').text($('#form_pp #speed').val());
 		if ($('#form_move').is(':hidden'))
+		{
 			$('#form_pp').fadeOut('slow', function() { $('#form_move').fadeIn('slow'); });
+			//$('#form_move #left').click(function() { PP_Move(this, 1); });
+			//$('#form_move #right').click(function() { PP_Move(this, 1); });
+			//$('#form_move #up').click(function() { PP_Move(this, 1); });
+		}
+	}
+	else if (elem && nbr > 0)
+	{
+		console.log('PP_Move(1)');
+		nbr = $nbr_move - nbr;
+		$nbr_move = (nbr < 0) ? $nbr_move : nbr;
+		$('#form_move #nbr').text($nbr_move);
+	}
+	else
+		console.log('PP_Move(0)');
+}
+$nbr_weapon = 0;
+$nbr_weapon2 = 0;
+function PP_Weapon(elem, nbr)
+{
+	if (PP_Change() && !nbr)
+	{
+		console.log('PP_Weapon(0)');
+		$nbr_weapon = parseInt($('#form_pp #weapon').val());
+		$nbr_weapon2 = $nbr_weapon;
+		$('#form_weapon #nbr').text(0);
+		if ($('#form_weapon').is(':hidden'))
+		{
+			$('#form_move').fadeOut('slow', function() { $('#form_weapon').fadeIn('slow'); });
+			//$('#form_weapon #less').click(function() { PP_Weapon(this, -1); });
+			//$('#form_weapon #more').click(function() { PP_Weapon(this, 1); });
+		}
+	}
+	else if (elem)
+	{
+		console.log('PP_Weapon(' + nbr + ')');
+		nbr = $nbr_weapon2 - nbr;
+		if (nbr >= 0 && nbr <= $nbr_weapon)
+			$nbr_weapon2 = nbr;
+		$('#form_weapon #nbr').text($nbr_weapon - $nbr_weapon2);
 	}
 }
