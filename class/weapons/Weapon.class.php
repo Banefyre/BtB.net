@@ -15,7 +15,6 @@ abstract class Weapon
 	protected $_range_middle_max = 0;
 	protected $_range_long_min = 0;
 	protected $_range_long_max = 0;
-	protected $_area_effect;
 	
 	function __toString()
 	{
@@ -77,11 +76,6 @@ abstract class Weapon
 		return $this->_range_long_max;
 	}
 
-	public function getAreaEffect()
-	{
-		return $this->_area_effect;
-	}
-
 /************************************************
 *                    setters                    *
 ************************************************/
@@ -124,11 +118,6 @@ abstract class Weapon
 	public function setRangeLongMax($value)
 	{
 		$this->_range_long_max = $value;
-	}
-
-	public function setAreaEffect($value)
-	{
-		$this->_area_effect = $value;
 	}
 }
 

@@ -16,7 +16,7 @@ class NavalSpear extends Weapon
 
 	public function shoot(Ship $ship, Ship $target)
 	{
-		if ($ship->getOrientation() == Ship::EAST)
+		if ($ship->getOrientation() == Ship::ORIENTATION_EAST)
 		{
 			$i = $ship->getX() + $ship->getWidth() + $ship->getRangeShortMin();
 			$range = $ship->getX() + $ship->getWidth() + $this->getRangeShortMax();
@@ -41,7 +41,7 @@ class NavalSpear extends Weapon
 			}
 			return Weapon::HIT_MISS;
 		}
-		else if ($ship->getOrientation() == Ship::WEST)
+		else if ($ship->getOrientation() == Ship::ORIENTATION_WEST)
 		{
 			$i = $ship->getX() - $ship->getWidth() - $ship->getRangeShortMin();
 			$range = $ship->getX() - $ship->getWidth() - $this->getRangeShortMax();
@@ -66,7 +66,7 @@ class NavalSpear extends Weapon
 			}
 			return Weapon::HIT_MISS;
 		}
-		else if ($ship->getOrientation() == Ship::SOUTH)
+		else if ($ship->getOrientation() == Ship::ORIENTATION_SOUTH)
 		{
 			$i = $ship->getY() + $ship->getHeight() + $ship->getRangeShortMin();
 			$range = $ship->getY() + $ship->getHeight() + $ship->getRangeShortMax();
@@ -91,7 +91,7 @@ class NavalSpear extends Weapon
 			}
 			return Weapon::HIT_MISS;
 		}
-		else if ($ship->getOrientation() == Ship::WEST)
+		else if ($ship->getOrientation() == Ship::ORIENTATION_WEST)
 		{
 			$i = $ship->getY() - $ship->getWidth() - $ship->getRangeShortMin();
 			$range = $ship->getY() - $ship->getWidth() - $this->getRangeShortMax();

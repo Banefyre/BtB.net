@@ -1,0 +1,8 @@
+Class Board :
+
+Classe decrivant le plateau de jeux
+
+Propriete :
+
+height : hauteur du plateau en case
+width : largeur du plateau en case

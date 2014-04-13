@@ -1,0 +1,36 @@
+Classe Board
+
+Gere la partie, les regles, les differents joueurs et leur flotte, et traite les differentes action de jeu
+
+const DFLT_BOARD : defini la taille par defaut du plateau
+const PHASE_ : constante des differentes phase du jeu
+
+propriete :
+-----------
+
+board : contient le plateau de jeu de classe Board
+grid : tableau a 2 dimensions representant la grille tel quelle doit etre affiche
+players : tableau des joeuurs de la partie de Classe Player
+current_player : Instance de la classe player du joueur actif
+opp_player : Instance de la classe player du joueur inactif
+active_ship : instance du vaisseau actif
+phase : phase courante de la partie (constante PHASE_)
+error : tableau des erreurs a afficher (string)
+
+methodes :
+----------
+
+init : initialise une nouvelle partie
+endTurn : declare la fin de tour du joueur actif et passe au joueur et tour suivant
+run : controller du jeu : traite les formulaires et effectue les actions correspondantes
+dice : lance le nombre de des passe en premier parametre du type passe en second (nombre de face) et retourne la somme de tous le des. 
+moveShip : deplace le vaisseau passe en paramtre, du type du mouvement passe en 2nd paramtre (constante MOVE_) , dun nombre de case passe en 3eme parametre si le mouvement est de type MOVE_UP
+destroyShip : retire le vaisseau passe en paramtre de la partie
+shoot : le vaisseau passe en 1er parametre tire sur le second;
+rollShootDice : prend en parametre le nombre de d6 a lancer et la valeur requise pour un succes, retourne le nombre de succes
+isOutBoard: determine si un vaisseau est sorti du plateau
+eperonnage : applique les regle d'eperonnage
+checkCollision : detemine si le vaisseau passe en parametre est en collision avec un autre. retourne le vaisseau concerne.
+getShipByName : retourne l'instance du vaisseau du nom passe en parametre
+updateGrid : met a jour la propriete grid en fonction de la position actuelle des differente flottes
+addError() : ajout un message d'erreur

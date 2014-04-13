@@ -1,0 +1,14 @@
+Class Player
+
+Classe decrivant un joueur
+
+Propriete :
+----------
+
+name : identifiant unique definissant le nom du joueur
+ship : tableau d' objet de Class Ship, la flotte du joueur
+
+Methodes :
+---------
+
+addShip : ajouter un vaisseau a la flotte du joueur

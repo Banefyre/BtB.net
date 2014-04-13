@@ -133,9 +133,18 @@ class GamesInfo
 		}
 
 
+		if (($res = $mysqli->query("SELECT `name` FROM `faction` INNER JOIN `games_faction` ON faction.id = games_faction.id_faction WHERE id_game =".$this->_idGame." AND `games_faction`.`selected` = 1")) === false)
+			echo $mysqli->error;
+		while ($tmp2 = $res->fetch_assoc())
+		{
+			$result2[] = $tmp2;
+		}
+
 		//bdd faction
-		$faction_p1 = "Human";
-		$faction_p2 = "Alien";
+		$faction_p1 = $result2[0]['name'];
+		$faction_p2 = $result2[1]['name'];
+
+		file_put_contents('file', $faction_p1.' '.$faction_p2);
 
 		$game = new Game(array(	'width' => 150,
 		'height' => 100));
