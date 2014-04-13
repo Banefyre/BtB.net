@@ -25,5 +25,16 @@ $(document).ready(function(){
 			});
 	});
 
+	$('.cell').click(function moveTo() {
+
+
+		var x = Math.abs($('.ship').position().left - $(this).position().left);
+		var y = Math.abs($('.ship').position().top - $(this).position().top);
+
+
+		console.log(x + y);
+		$('.ship').animate({ top: (-1000) + ($(this).attr('y') * 10), left: ($(this).attr('x') * 10)}, Math.abs(x + y) * 4);
+	});
+
 
 });

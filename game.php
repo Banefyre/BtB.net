@@ -10,7 +10,7 @@
 <?PHP
 session_start();
 require_once("Connect.class.php");
-require_once("Game.class.php");
+require_once("Server.class.php");
 require_once("GamesInfo.class.php");
 if (!isset($_SESSION['id_game'])) //connect to game or create game
 {
@@ -35,7 +35,6 @@ if (!isset($_SESSION['id_game'])) //connect to game or create game
 }
 else //connected to game
 {
-
 	$gi = new Gamesinfo($_SESSION['id_game']);
 	if (!empty($_POST['faction']))
 	{
@@ -56,7 +55,7 @@ function connectToGame($id)
 
 function createGame($name)
 {
-	$new = new Game($name);
+	$new = new Server($name);
 	$_SESSION["id_game"] = $new->getId();
 	$game = new Connect();
 }

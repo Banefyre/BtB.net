@@ -1,17 +1,14 @@
 <div id ="grid">
-	<table border = 1>
 <?PHP
-		for ($i = 0 ; $i < 100; $i++)
+	for ($i = 0 ; $i < 100; $i++)
+	{
+		for ($j = 0 ; $j < 150 ; $j++)
 		{
-			echo "<tr>";
-			for ($j = 0 ; $j < 150 ; $j++)
-			{
-				echo "<td x=".$j." y=".$i."></td>";
-			}
-			echo "</tr>";
+			echo "<div class='cell' x=".$j." y=".$i."></div>";
 		}
+	}
+	echo '<div><img class="ship" src="images/chao_1.png" /></div>'
 ?>
-	</table>
-	<?PHP include('interface/commandPannel.php');?>
-
 </div>
+<?PHP include('interface/commandPannel.php');?>
+
