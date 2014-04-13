@@ -7,6 +7,7 @@
 	<div id="form_pp">
 		<div id="nbr" alt="50">50</div>
 		<label for="speed">Speed</label><br />
+		<div id="speed_default" alt="20">20</div>
 		<input id="speed" type="number" value="0" onchange="PP_Change();" /><br />
 		<label for="shield">Shield</label><br />
 		<input id="shield" type="number" value="0" onchange="PP_Change();" /><br />
@@ -20,9 +21,9 @@
 	<div id="form_move">
 		<div class="title">Move</div>
 		<div id="nbr"></div>
-		<input id="left" type="image" src="images/arrow/left.png" onclick="PP_Weapon(this, 1);" />
-		<input id="up" type="image" src="images/arrow/up.png" onclick="PP_Weapon(this, 1);" />
-		<input id="right" type="image" src="images/arrow/right.png" onclick="PP_Weapon(this, 1);" />
+		<input id="left" type="image" src="images/arrow/left.png" onclick="PP_Move(this, 1);" />
+		<input id="up" type="image" src="images/arrow/up.png" onclick="PP_Move(this, 1);" />
+		<input id="right" type="image" src="images/arrow/right.png" onclick="PP_Move(this, 1);" />
 		<input onclick="PP_Weapon(this, 0);" type="button" value="Validate" />
 	</div>
 	<div id="form_weapon">

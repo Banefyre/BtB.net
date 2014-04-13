@@ -5,6 +5,7 @@ function button_activate()
 {
 	console.log('activate');
 	$('#form_activate').fadeOut('slow', function() { $('#form_pp').fadeIn('slow'); });
+	$('#speed_default').text($('#speed_default').attr('alt') + ' +');
 }
 $(document).ready(function(){
 	if ($('#faction').attr('game') === 'true')

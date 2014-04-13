@@ -124,6 +124,7 @@
 }
 #command_panel #form_pp, #command_panel #form_move, #command_panel #form_weapon {
 	display: none;
+	position: relative;
 	width: 300px;
 	text-align: center;
 }
@@ -131,6 +132,12 @@
 	width: 300px;
 	text-align: center;
 	font-size: 2rem;
+}
+#command_panel #speed_default {
+	position: absolute;
+	top: 5.65rem;
+	left: 1rem;
+	font-size: 0.9rem;
 }
 #command_panel #form_pp input {
 	width: calc(300px - 1.4rem);
